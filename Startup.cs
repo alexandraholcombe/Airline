@@ -5,7 +5,7 @@ using Nancy;
 using Nancy.Owin;
 using Nancy.ViewEngines.Razor;
 
-namespace ToDoListSql
+namespace AirlineApp
 {
   public class Startup
   {
@@ -40,6 +40,6 @@ namespace ToDoListSql
   }
   public static class DBConfiguration
     {
-        public static string ConnectionString = "Data Source=(localdb)\\mssqllocaldb;Initial Catalog=todo;Integrated Security=SSPI;";
+        public static string ConnectionString = "Data Source=(localdb)\\mssqllocaldb;Initial Catalog=airline;Integrated Security=SSPI;";
     }
 }
