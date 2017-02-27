@@ -1,7 +1,7 @@
 # Airline Flight Database
 #### _Site to view flights_
 
-#### By _**Alexandra Holcombe**_
+#### By _**Alexandra Holcombe && Minh Phuong**_
 
 ## Description
 
@@ -174,7 +174,7 @@ This website will take a string and a word from a user, then count the number of
 
 ## Support and contact details
 
-Please contact Allie Holcombe at alexandra.holcombe@gmail.com with any questions, concerns, or suggestions.
+Please contact Allie Holcombe at alexandra.holcombe@gmail.com or Minh Phuong mphuong@kent.edu with any questions, concerns, or suggestions.
 
 ***
 
@@ -194,4 +194,4 @@ This web application uses:
 
 *This project is licensed under the MIT license.*
 
-Copyright (c) 2017 **_Alexandra Holcombe_**
+Copyright (c) 2017 **_Alexandra Holcombe && Minh Phuong_**
