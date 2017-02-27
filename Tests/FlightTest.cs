@@ -53,6 +53,24 @@ namespace AirlineApp
       Assert.Equal(testList, resultList);
     }
 
+    [Fact]
+    public void Test_Save_AssignedIdtoFlight()
+    {
+      //Arrange
+      DateTime departureTime = new DateTime(2017, 3, 14, 9, 30, 0);
+      string flightStatus = "On Time";
+      Flight testFlight = new Flight("AX5390", departureTime, flightStatus);
+      testFlight.Save();
+      Flight savedFlight = Flight.GetAll()[0];
+
+      //Act
+      int savedId = savedFlight.GetId();
+      int testId = testFlight.GetId();
+
+      //Assert
+      Assert.Equal(testId,savedId);
+    }
+
     public void Dispose()
     {
       Flight.DeleteAll();
