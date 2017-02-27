@@ -65,6 +65,24 @@ namespace AirlineApp
       Assert.Equal(testId,savedId);
     }
 
+    [Fact]
+    public void Test_GetAll_ReturnsListofCities()
+    {
+      //Arrange
+      City firstCity = new City("Seattle");
+      City secondCity = new City("Portland");
+
+      //Act
+      firstCity.Save();
+      secondCity.Save();
+
+      //Assert
+      List<City> actualResult = City.GetAll();
+      List<City> expectedResult = new List<City>{secondCity, firstCity};
+
+      Assert.Equal(expectedResult, actualResult);
+    }
+
     public void Dispose()
     {
       City.DeleteAll();
