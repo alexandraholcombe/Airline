@@ -13,6 +13,15 @@ namespace AirlineApp
       DBConfiguration.ConnectionString = "Data Source=(localdb)\\mssqllocaldb;Initial Catalog=airline_test;Integrated Security=SSPI;";
     }
 
+    [Fact]
+    public void Test_DatabaseEmptyAtFirst()
+    {
+      //Arrange,Act
+      int result = Flight.GetAll().Count;
+
+      //Assert
+      Assert.Equal(0, result);
+    }
     public void Dispose()
     {
       Flight.DeleteAll();

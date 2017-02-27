@@ -49,5 +49,37 @@ namespace AirlineApp
 
       conn.Close();
     }
+
+    public static List<Flight> GetAll()
+    {
+      List<Flight> allFlights = new List<Flight>{};
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("SELECT * FROM flights ORDER BY departure_time;", conn);
+      SqlDataReader rdr = cmd.ExecuteReader();
+
+      while (rdr.Read())
+      {
+        int flightId = rdr.GetInt32(0);
+        string flightNo = rdr.GetString(1);
+        DateTime departureTime = rdr.GetDateTime(2);
+        string flightStatus = rdr.GetString(3);
+
+        Flight newFlight = new Flight(flightNo, departureTime, flightStatus, flightId);
+        allFlights.Add(newFlight);
+      }
+
+      if (rdr !=  null)
+      {
+        rdr.Close();
+      }
+      if (conn != null)
+      {
+        conn.Close();
+      }
+
+      return allFlights;
+    }
   }
 }
