@@ -130,6 +130,10 @@ This website will take a string and a word from a user, then count the number of
 * Example Input: "AX5839"
 * Example Output: Departures: "Seattle"  Arrivals: "Portland"
 
+**The Delete method for the City class will also remove all flights associate with that city.**
+* Example Input: Delete "Seattle"
+* Example Output: List of all flights excluding those connected to Seattle
+
 ### User Interface
 ===================  
 
