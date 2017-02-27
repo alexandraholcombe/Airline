@@ -127,5 +127,40 @@ namespace AirlineApp
       }
     }
 
+    public static Flight Find(int id)
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("SELECT * FROM flights WHERE id = @FlightId", conn);
+      cmd.Parameters.Add(new SqlParameter("@FlightId", id.ToString()));
+      SqlDataReader rdr = cmd.ExecuteReader();
+
+      int foundId = 0;
+      string foundNumber = null;
+      DateTime foundDateTime = new DateTime();
+      string foundStatus = null;
+
+      while (rdr.Read())
+      {
+        foundId = rdr.GetInt32(0);
+        foundNumber = rdr.GetString(1);
+        foundDateTime = rdr.GetDateTime(2);
+        foundStatus = rdr.GetString(3);
+      }
+
+      Flight foundFlight = new Flight(foundNumber, foundDateTime, foundStatus, foundId);
+
+      if (rdr !=  null)
+      {
+        rdr.Close();
+      }
+      if (conn != null)
+      {
+        conn.Close();
+      }
+
+      return foundFlight;
+    }
   }
 }
