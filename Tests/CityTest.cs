@@ -83,6 +83,20 @@ namespace AirlineApp
       Assert.Equal(expectedResult, actualResult);
     }
 
+    [Fact]
+    public void Test_Find_ReturnCityFromDatabase()
+    {
+      //Arrange
+      City testCity = new City("Seattle");
+      testCity.Save();
+
+      //Act
+      City foundCity = City.Find(testCity.GetId());
+
+      //Assert
+      Assert.Equal(testCity,foundCity);
+    }
+
     public void Dispose()
     {
       City.DeleteAll();

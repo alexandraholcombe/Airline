@@ -106,6 +106,36 @@ namespace AirlineApp
       }
     }
 
-    
+    public static City Find(int id)
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("SELECT * FROM cities WHERE id = @CityId;", conn);
+      cmd.Parameters.Add(new SqlParameter("@CityId", id.ToString()));
+      SqlDataReader rdr = cmd.ExecuteReader();
+
+      int foundId = 0;
+      string foundName = null;
+
+      while(rdr.Read())
+      {
+        foundId = rdr.GetInt32(0);
+        foundName = rdr.GetString(1);
+      }
+
+      City foundCity = new City(foundName, foundId);
+
+      if (rdr != null)
+      {
+        rdr.Close();
+      }
+      if (conn !=  null)
+      {
+        conn.Close();
+      }
+
+      return foundCity;
+    }
   }
 }
