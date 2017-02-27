@@ -81,5 +81,23 @@ namespace AirlineApp
 
       return allFlights;
     }
+
+    public override bool Equals(System.Object otherFlight)
+    {
+      if (!(otherFlight is Flight))
+      {
+        return false;
+      }
+      else
+      {
+        Flight newFlight = (Flight) otherFlight;
+        bool idEquality = (this.GetId() == newFlight.GetId());
+        bool flightNumberEquality = (this.GetFlightNumber() == newFlight.GetFlightNumber());
+        bool departureTimeEquality = (this.GetDepartureTime() == newFlight.GetDepartureTime());
+        bool flightStatusEquality = (this.GetStatus() == newFlight.GetStatus());
+
+        return (idEquality && flightNumberEquality && departureTimeEquality && flightStatusEquality);
+      }
+    }
   }
 }
