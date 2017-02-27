@@ -36,6 +36,23 @@ namespace AirlineApp
       Assert.Equal(firstFlight, secondFlight);
     }
 
+    [Fact]
+    public void Test_Save_SavesToDatabase()
+    {
+      //Arrange
+      DateTime departureTime = new DateTime(2017, 3, 14, 9, 30, 0);
+      string flightStatus = "On Time";
+      Flight testFlight = new Flight("AX5390", departureTime, flightStatus);
+      testFlight.Save();
+
+      //Act
+      List<Flight> resultList = Flight.GetAll();
+      List<Flight> testList = new List<Flight>{testFlight};
+
+      //Assert
+      Assert.Equal(testList, resultList);
+    }
+
     public void Dispose()
     {
       Flight.DeleteAll();

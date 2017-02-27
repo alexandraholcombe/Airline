@@ -99,5 +99,33 @@ namespace AirlineApp
         return (idEquality && flightNumberEquality && departureTimeEquality && flightStatusEquality);
       }
     }
+
+    public void Save()
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("INSERT INTO flights (number, departure_time, flight_status) OUTPUT INSERTED.id VALUES(@FlightNumber,@DepartureTime,@FlightStatus);", conn);
+      cmd.Parameters.Add(new SqlParameter("@FlightNumber", this.GetFlightNumber()));
+      cmd.Parameters.Add(new SqlParameter("@DepartureTime", this.GetDepartureTime()));
+      cmd.Parameters.Add(new SqlParameter("@FlightStatus", this.GetStatus()));
+
+      SqlDataReader rdr = cmd.ExecuteReader();
+
+      while(rdr.Read())
+      {
+        this._id = rdr.GetInt32(0);
+      }
+
+      if (rdr !=  null)
+      {
+        rdr.Close();
+      }
+      if (conn != null)
+      {
+        conn.Close();
+      }
+    }
+
   }
 }
