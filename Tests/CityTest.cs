@@ -23,6 +23,17 @@ namespace AirlineApp
       Assert.Equal(0, result);
     }
 
+    [Fact]
+    public void Test_Equal_ReturnsTrueIfNamesAreTheSame()
+    {
+      //Arrange,Act
+      City firstCity = new City("Seattle");
+      City secondCity = new City("Seattle");
+
+      //Assert
+      Assert.Equal(secondCity,firstCity);
+    }
+
     public void Dispose()
     {
       City.DeleteAll();

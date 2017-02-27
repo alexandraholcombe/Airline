@@ -65,5 +65,20 @@ namespace AirlineApp
       }
       return allCities;
     }
+
+    public override bool Equals(System.Object otherCity)
+    {
+      if (!(otherCity is City))
+      {
+        return false;
+      }
+      else
+      {
+        City newCity = (City) otherCity;
+        bool nameEquality = (this.GetName() == newCity.GetName());
+        bool idEquality = (this.GetId() == newCity.GetId());
+        return (nameEquality && idEquality);
+      }
+    }
   }
 }
