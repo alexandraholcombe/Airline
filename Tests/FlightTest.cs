@@ -71,6 +71,27 @@ namespace AirlineApp
       Assert.Equal(testId,savedId);
     }
 
+    [Fact]
+    public void Test_GetAll_ReturnsListofFlights()
+    {
+      //Arrange
+      DateTime firstDepartureTime = new DateTime(2017, 3, 14, 9, 30, 0);
+      DateTime secondDepartureTime = new DateTime(2007, 3, 14, 9, 30, 0);
+      string flightStatus = "On Time";
+      Flight firstFlight = new Flight("AX5390", firstDepartureTime, flightStatus);
+      Flight secondFlight = new Flight("B45390", secondDepartureTime, flightStatus);
+
+      //Act
+      firstFlight.Save();
+      secondFlight.Save();
+
+      //Assert
+      List<Flight> actualResult = Flight.GetAll();
+      List<Flight> expectedResult = new List<Flight>{secondFlight, firstFlight};
+
+      Assert.Equal(expectedResult, actualResult);
+    }
+
     public void Dispose()
     {
       Flight.DeleteAll();
