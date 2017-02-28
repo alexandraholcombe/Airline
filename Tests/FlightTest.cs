@@ -149,6 +149,28 @@ namespace AirlineApp
       Assert.Equal(verify, result);
     }
 
+    [Fact]
+    public void Test_AddDepartureCity_AddsDepartureCityToFlight()
+    {
+      //Arrange
+      DateTime departureTime = new DateTime(2017, 3, 14, 9, 30, 0);
+      string flightStatus = "On Time";
+      Flight testFlight = new Flight("AX5390", departureTime, flightStatus);
+      testFlight.Save();
+
+      City departureCity = new City("Seattle");
+      departureCity.Save();
+
+      //Act
+      testFlight.AddDepartureCity(departureCity);
+
+      List<City> result = testFlight.GetDepartureCity();
+      List<City> testList = new List<City>{departureCity};
+
+      //Assert
+      Assert.Equal(testList, result);
+    }
+
     public void Dispose()
     {
       Flight.DeleteAll();

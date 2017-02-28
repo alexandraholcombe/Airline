@@ -101,5 +101,16 @@ namespace AirlineApp
     {
       City.DeleteAll();
     }
+
+    // [Fact]
+    // public void Test_GetFlights_ReturnsListOfFlightsInCity()
+    // {
+    //   //Arrange
+    //   City testCity = new City("Seattle");
+    //
+    //   DateTime departureTime = new DateTime(2017, 3, 14, 9, 30, 0);
+    //   string firstFlightStatus = "On Time";
+    //   Flight firstFlight = new Flight("AX5390", departureTime, firstFlightStatus);
+    // }
   }
 }
