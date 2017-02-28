@@ -130,6 +130,25 @@ namespace AirlineApp
       Assert.Equal(expectedResult, actualResult);
     }
 
+    [Fact]
+    public void Test_DeleteThisFlight_OneFlightDeletedFromDatabase()
+    {//Arrange
+      DateTime departureTime = new DateTime(2017, 3, 14, 9, 30, 0);
+      string flightStatus = "On Time";
+      Flight firstFlight = new Flight("AX5390", departureTime, flightStatus);
+      Flight secondFlight = new Flight("BD890", departureTime, flightStatus);
+      firstFlight.Save();
+      secondFlight.Save();
+
+      //Act
+      firstFlight.DeleteThisFlight();
+      List<Flight> result = Flight.GetAll();
+      List<Flight> verify = new List<Flight>{secondFlight};
+
+      //Assert
+      Assert.Equal(verify, result);
+    }
+
     public void Dispose()
     {
       Flight.DeleteAll();

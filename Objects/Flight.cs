@@ -189,5 +189,17 @@ namespace AirlineApp
         conn.Close();
       }
     }
+
+    public void DeleteThisFlight()
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("DELETE FROM flights WHERE id=@FlightId;", conn);
+      cmd.Parameters.Add(new SqlParameter("@FlightId", this.GetId()));
+      cmd.ExecuteNonQuery();
+
+      conn.Close();
+    }
   }
 }
