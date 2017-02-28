@@ -108,6 +108,28 @@ namespace AirlineApp
       Assert.Equal(testFlight, foundFlight);
     }
 
+    [Fact]
+    public void Test_Update_UpdatesFlightStatusinDB()
+    {
+      //Arrange
+      DateTime departureTime = new DateTime(2017, 3, 14, 9, 30, 0);
+      string flightStatus = "On Time";
+      Flight testFlight = new Flight("AX5390", departureTime, flightStatus);
+      testFlight.Save();
+
+      string newFlightStatus = "Delayed";
+
+      //Act
+      testFlight.UpdateStatus(newFlightStatus);
+
+
+      //Assert
+      string actualResult = testFlight.GetStatus();
+      string expectedResult = newFlightStatus;
+
+      Assert.Equal(expectedResult, actualResult);
+    }
+
     public void Dispose()
     {
       Flight.DeleteAll();

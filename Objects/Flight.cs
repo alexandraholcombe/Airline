@@ -162,5 +162,32 @@ namespace AirlineApp
 
       return foundFlight;
     }
+
+    public void UpdateStatus(string newStatus)
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("UPDATE flights SET flight_status = @NewStatus OUTPUT INSERTED.flight_status WHERE id = @FlightId;", conn);
+      cmd.Parameters.Add(new SqlParameter("@NewStatus", newStatus));
+      cmd.Parameters.Add(new SqlParameter("@FlightId", this.GetId()));
+
+      SqlDataReader rdr = cmd.ExecuteReader();
+
+      while(rdr.Read())
+      {
+        this._status = rdr.GetString(0);
+      }
+
+      if (rdr != null)
+      {
+        rdr.Close();
+      }
+
+      if (conn != null)
+      {
+        conn.Close();
+      }
+    }
   }
 }
